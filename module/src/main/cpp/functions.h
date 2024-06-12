@@ -5,6 +5,14 @@
 bool addCurrency, freeItems, everythingUnlocked, showAllItems, addSkins;
 bool attackScale;
 
+/*
+   FOR ARM64
+   200080D2C0035FD6 TRUE
+   000080D2C0035FD6 FALSE
+   00E0AFD2C0035FD6 HIGH VALUE
+   1F2003D5 NOP
+*/
+
 monoString *CreateIl2cppString(const char *str) {
     monoString *(*String_CreateString)(void *instance, const char *str) = (monoString*(*)(void*, const char*)) (g_il2cppBaseMap.startAddress + string2Offset(OBFUSCATE("0x2596B20")));
     return String_CreateString(NULL, str);
