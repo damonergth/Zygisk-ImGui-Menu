@@ -1,0 +1,9 @@
+ext {
+    moduleLibraryName = "com.gamename.menu"
+    magiskModuleId = "dpz_mod_gamename"
+    moduleName = "GameName Mod Menu"
+    moduleAuthor = "Dapz"
+    moduleDescription = "ImGui Mod Menu"
+    moduleVersion = "v1.2.0"
+    moduleVersionCode = 1
+}
