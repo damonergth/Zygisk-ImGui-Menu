@@ -14,7 +14,6 @@ void DrawMenu() {
         if (BeginTabBar("Menu", tab_bar_flags)) {
             if (BeginTabItem(OBFUSCATE("PLAYER"))) {
                 Checkbox(OBFUSCATE("One Hit"), &attackScale);
-                SameLine(); HelpMarker("applied to the enemy");
                 EndTabItem();
             }
             SliderInt("slider int", &i1, -1, 3);
