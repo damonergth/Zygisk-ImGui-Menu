@@ -3,6 +3,9 @@
 
 using namespace ImGui;
 
+int i1 = 0;
+float f1 = 0.123f;
+
 void DrawMenu() {
     static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); 
     {
@@ -11,10 +14,15 @@ void DrawMenu() {
         if (BeginTabBar("Menu", tab_bar_flags)) {
             if (BeginTabItem(OBFUSCATE("PLAYER"))) {
                 Checkbox(OBFUSCATE("One Hit"), &attackScale);
+                SameLine(); HelpMarker("applied to the enemy");
                 EndTabItem();
             }
+            SliderInt("slider int", &i1, -1, 3);
+            SliderFloat("slider float", &f1, 0.0f, 1.0f, "ratio = %.3f");
             EndTabBar();
+            
         }
+        TextUnformatted(OBFUSCATE ("BY DAPZ"))
         Patches();
         End();
     }
