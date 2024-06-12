@@ -22,7 +22,7 @@ void DrawMenu() {
             EndTabBar();
             
         }
-        TextUnformatted(OBFUSCATE ("BY DAPZ"))
+        TextUnformatted(OBFUSCATE ("BY DAPZ"));
         Patches();
         End();
     }
