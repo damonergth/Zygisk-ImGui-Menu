@@ -38,6 +38,15 @@ void Patches() {
 }
 
 // declare your hooks here
+int dmg = 0;
+int (*old_dmg)(void *instance);
+int dmg(void *instance) {
+    if (instance != NULL && dmg) {
+        return (int) dmg;
+    }
+    return old_dmg(instance);
+}
+
 void (*old_Backend)(void *instance);
 void Backend(void *instance) {
     if (instance != NULL) {

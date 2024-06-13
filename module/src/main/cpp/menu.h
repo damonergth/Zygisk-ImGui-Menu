@@ -21,7 +21,7 @@ void DrawMenu() {
                 Checkbox(OBFUSCATE("Attach"), &attach);
                 EndTabItem();
             }
-            SliderInt("slider int", &i1, -1, 3);
+            SliderInt("slider int", &dmg, 0, 100);
             SliderFloat("slider float", &f1, 0.0f, 1.0f, "ratio = %.3f");
             EndTabBar();
             
