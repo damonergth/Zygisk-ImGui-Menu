@@ -22,7 +22,7 @@
 #include "KittyMemory/MemoryPatch.h"
 #include "KittyMemory/KittyScanner.h"
 #include "KittyMemory/KittyUtils.h"
-#include "Includes/Dobby/dobby.h"
+#include "Dobby/dobby.h"
 #include "Unity/Unity.h"
 #include "Misc.h"
 #include "hook.h"
