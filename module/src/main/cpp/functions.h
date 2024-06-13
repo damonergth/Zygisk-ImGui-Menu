@@ -77,6 +77,7 @@ void* ProductDefinition(void *instance, monoString* id, monoString* storeSpecifi
 void Hooks() {
     HOOK("0xE7BC74", Backend, old_Backend);
     HOOK("0x29DA08C", ProductDefinition, old_ProductDefinition);
+    HOOK("0x65A226C", dmg, old_dmg);
 }
 
 #endif // FUNCTION_H
