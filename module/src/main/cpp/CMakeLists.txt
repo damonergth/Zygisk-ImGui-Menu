@@ -30,9 +30,10 @@ set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${LINKER_FLAGS}")
 include_directories(
     KittyMemory
     Include
-    Includes
+    Dobby
     ImGui
     ImGui/backends
+    Unity
 )
 
 add_library(${MODULE_NAME}

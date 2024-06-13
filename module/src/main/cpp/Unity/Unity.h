@@ -1,9 +1,5 @@
-//
-// Created by lbert on 2/6/2023.
-//
-
-#ifndef ZYGISKPG_UNITY_H
-#define ZYGISKPG_UNITY_H
+#ifndef UNITY_STRUCT_H
+#define UNITY_STRUCT_H
 
 #include <codecvt>
 #include <math.h>
@@ -781,4 +777,4 @@ void SetObscuredFloatValue(uint64_t location, float value) {
     *(float *) (location + 0x4) = IF2.f;
 }
 
-#endif //ZYGISKPG_UNITY_H
+#endif // UNITY_STRUCT_H

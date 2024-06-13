@@ -1,8 +1,8 @@
 #ifndef MISC_H
 #define MISC_H
 
-#include "Includes/Dobby/dobby.h"
-#include "Include/Unity.h"
+#include "Dobby/dobby.h"
+#include "Unity/Unity.h"
 #include "KittyMemory/KittyMemory.h"
 #include "KittyMemory/KittyScanner.h"
 #include "KittyMemory/MemoryPatch.h"

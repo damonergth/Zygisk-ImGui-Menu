@@ -2,6 +2,7 @@
 #define ZygiskImGui_HOOK_H
 
 #include <jni.h>
+#include <android/log.h>
 
 static int enable_hack;
 static char *game_data_dir = NULL;
@@ -9,8 +10,6 @@ static char *game_data_dir = NULL;
 int isGame(JNIEnv *env, jstring appDataDir);
 
 void *hack_thread(void *arg);
-
-#include <android/log.h>
 
 #define LOG_TAG "DPZMD"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
