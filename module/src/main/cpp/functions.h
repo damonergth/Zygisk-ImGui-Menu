@@ -40,7 +40,7 @@ void Patches() {
 // declare your hooks here
 int dmg = 0;
 int (*old_dmg)(void *instance);
-int dmg(void *instance) {
+int dmgmulti(void *instance) {
     if (instance != NULL && dmg) {
         return (int) dmg;
     }
@@ -77,7 +77,7 @@ void* ProductDefinition(void *instance, monoString* id, monoString* storeSpecifi
 void Hooks() {
     HOOK("0xE7BC74", Backend, old_Backend);
     HOOK("0x29DA08C", ProductDefinition, old_ProductDefinition);
-    HOOK("0x65A226C", dmg, old_dmg);
+    HOOK("0x65A226C", dmgmulti, old_dmg);
 }
 
 #endif // FUNCTION_H
