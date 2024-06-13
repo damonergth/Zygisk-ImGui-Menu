@@ -3,7 +3,7 @@
 
 // here you can define variables for the patches
 bool addCurrency, freeItems, everythingUnlocked, showAllItems, addSkins;
-bool attackScalxe;
+bool attackScale;
 
 /*
    FOR ARM64
@@ -24,16 +24,16 @@ void Pointers() {
     PurchaseRealMoney = (void(*)(void*, monoString*, monoString*, void*)) (g_il2cppBaseMap.startAddress + string2Offset(OBFUSCATE("0xE7AADC")));
 }
 
-bool bot, mana, updHP, updFrame, attach;
+bool bot, mana, updHp, updFrame, attach;
 
 void Patches() {
     PATCH_SWITCH("0x65A226C", "C0035FD6", attackScale);
     PATCH_SWITCH("0xF148A4", "E07C80D2C0035FD6", freeItems);
-PATCH_SWITCH("0x50e1b58", "000080D2C0035FD6", bot);
-PATCH_SWITCH("0x777b90c", "00E0AFD2C0035FD6", mana);
-PATCH_SWITCH("0x777d534", "1F2003D5", updHp);
-PATCH_SWITCH("0x777fb70", "1F2003D5", updFrame);
-PATCH_SWITCH("0x777de28", "1F2003D5", attach);
+    PATCH_SWITCH("0x50e1b58", "000080D2C0035FD6", bot);
+    PATCH_SWITCH("0x777b90c", "00E0AFD2C0035FD6", mana);
+    PATCH_SWITCH("0x777d534", "1F2003D5", updHp);
+    PATCH_SWITCH("0x777fb70", "1F2003D5", updFrame);
+    PATCH_SWITCH("0x777de28", "1F2003D5", attach);
 
 }
 
