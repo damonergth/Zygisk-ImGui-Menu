@@ -34,9 +34,9 @@ void SetupImgui() {
     io.DisplaySize = ImVec2((float) glWidth, (float) glHeight);
     ImGui_ImplOpenGL3_Init("#version 100");
     StyleColorsDark();
-    ImFontConfig fontCfg;
-    fontCfg SizePixels = 22.0f;
-    io.Fonts->AddFontDefault(&fontCfg);
+    ImFontConfig font_cfg;
+    font_cfg.SizePixels = 22.0f;
+    io.Fonts->AddFontDefault(&font_cfg);
     GetStyle().ScaleAllSizes(7.0f);
     
 }
