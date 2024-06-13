@@ -15,6 +15,8 @@ bool attackScale;
 
 bool bot, mana, updHp, updFrame, attach;
 
+void Pointers() {}
+
 void Patches() {
     PATCH_SWITCH("0x64A226C", "C0035FD6", attackScale);
     PATCH_SWITCH("0xF148A4", "E07C80D2C0035FD6", freeItems);
