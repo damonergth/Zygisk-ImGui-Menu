@@ -29,6 +29,7 @@ void Patches() {
 }
 
 // declare your hooks here
+/*
 int dmg = 0;
 int (*old_dmg)(void *instance);
 int dmgmulti(void *instance) {
@@ -37,9 +38,8 @@ int dmgmulti(void *instance) {
     }
     return old_dmg(instance);
 }
-
-void Hooks() {
-    HOOK("0x65A226C", dmgmulti, old_dmg);
-}
-
+*/
+void Hooks() {}
+    // HOOK("0x65A226C", dmgmulti, old_dmg);
+   
 #endif // FUNCTION_H
