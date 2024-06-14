@@ -17,7 +17,6 @@ bool enterDeadState; // 0x509c260 private Void Oak.IState.Enter(IState prev) { }
 void Pointers() {}
 
 void Patches() {
-    PATCH_SWITCH("0xF148A4", "E07C80D2C0035FD6", freeItems);
     PATCH_SWITCH("0x50e1b58", "000080D2C0035FD6", bot);
     PATCH_SWITCH("0x777b90c", "00E0AFD2C0035FD6", mana);
     PATCH_SWITCH("0x777d534", "000080D2C0035FD6", updHp); // force close
@@ -45,8 +44,8 @@ float getWalkspeed(void *instance) {
 }
 
 void Hooks() {
-    HOOK("0x65A226C", damageMultiplierplier, old_damageMultiplier);
-    HOOK("0x777f2a4", getWalkspeed, old_getWalkspeed):
+    HOOK("0x65A226C", damageMultiplier, old_damageMultiplier);
+    HOOK("0x777f2a4", getWalkspeed, old_getWalkspeed);
 }
 
 using namespace ImGui;
@@ -57,10 +56,9 @@ void DrawMenu() {
         Begin(OBFUSCATE("EZCHEATS"));
         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown;
         if (BeginTabBar("Menu", tab_bar_flags)) {
-            SliderInt("Damage Multiplier", &dmg, 0, 100);
+            SliderInt("Damage Multiplier", &damage, 0, 100);
             SliderFloat("Walkspeed", &walkspeed, 0.0f, 10.0f, "ratio = %.3f");
             if (BeginTabItem(OBFUSCATE("PLAYER"))) {
-                Checkbox(OBFUSCATE("One Hit"), &attackScale);
                 Checkbox(OBFUSCATE("Dumb Enemt"), &bot);
                 Checkbox(OBFUSCATE("No CD"), &mana);
                 Checkbox(OBFUSCATE("Hp Update"), &updHp);
