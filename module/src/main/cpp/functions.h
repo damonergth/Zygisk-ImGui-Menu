@@ -35,7 +35,7 @@ int damageMultiplier(void *instance) {
     }
     return old_damageMultiplier(instance);
 }
-int walkspeed = 1; // 0x777f2a4 public Single get_WalkSpeed() { }
+float walkspeed = 1.0f; // 0x777f2a4 public Single get_WalkSpeed() { }
 float (*old_getWalkspeed)(void *instance);
 float getWalkspeed(void *instance) {
     if (instance != NULL && walkspeed > 1) {
@@ -51,17 +51,14 @@ void Hooks() {
 
 using namespace ImGui;
 
-int i1 = 0;
-float f1 = 0.123f;
-
 void DrawMenu() {
     static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); 
     {
         Begin(OBFUSCATE("EZCHEATS"));
         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown;
         if (BeginTabBar("Menu", tab_bar_flags)) {
-            SliderInt("slider int", &dmg, 0, 100);
-            SliderFloat("slider float", &walkspeed, 0.0f, 10.0f, "ratio = %.3f");
+            SliderInt("Damage Multiplier", &dmg, 0, 100);
+            SliderFloat("Walkspeed", &walkspeed, 0.0f, 10.0f, "ratio = %.3f");
             if (BeginTabItem(OBFUSCATE("PLAYER"))) {
                 Checkbox(OBFUSCATE("One Hit"), &attackScale);
                 Checkbox(OBFUSCATE("Dumb Enemt"), &bot);
