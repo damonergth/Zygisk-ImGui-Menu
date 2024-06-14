@@ -1,6 +1,8 @@
 #ifndef IMGUI_MENU_H
 #define IMGUI_MENU_H
- using namespace ImGui;
+
+using namespace ImGui;
+ 
 void SetupImgui() {
     IMGUI_CHECKVERSION();
     CreateContext();
@@ -11,10 +13,8 @@ void SetupImgui() {
     ImFontConfig font_cfg;
     font_cfg.SizePixels = 22.0f;
     io.Fonts->AddFontDefault(&font_cfg);
-    GetStyle().ScaleAllSizes(7.0f);
-    
+    GetStyle().ScaleAllSizes(7.0f)
 }
-
 
 EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surface);
 EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
