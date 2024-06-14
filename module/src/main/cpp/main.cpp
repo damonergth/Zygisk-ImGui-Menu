@@ -18,7 +18,7 @@ class MyModule : public zygisk::ModuleBase {
 public:
     void onLoad(Api *api, JNIEnv *env) override {
         env_ = env;
-        this->api = api;
+        // this->api = api;
         // this->env = env;
     }
 
