@@ -13,7 +13,7 @@ void SetupImgui() {
     ImFontConfig font_cfg;
     font_cfg.SizePixels = 22.0f;
     io.Fonts->AddFontDefault(&font_cfg);
-    GetStyle().ScaleAllSizes(7.0f)
+    GetStyle().ScaleAllSizes(7.0f);
 }
 
 EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surface);
