@@ -27,8 +27,9 @@ public:
             LOGE("Skip unknown process");
             return;
         }
-        /*
+        
         enable_hack = isGame(env_, args->app_data_dir);
+        /*
         auto dumpGame = env->GetStringUTFChars(args->nice_name, nullptr);
         auto dumpDataDir = env->GetStringUTFChars(args->app_data_dir, nullptr);
         preSpecialize(dumpGame, dumpDataDir);
