@@ -52,7 +52,7 @@ add_library(${MODULE_NAME}
     KittyMemory/MemoryBackup.cpp
     KittyMemory/MemoryPatch.cpp
     main.cpp
-    hook.cpp
+    hack.cpp
 )
 
 set(DOBBY_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libs/${CMAKE_ANDROID_ARCH_ABI}/libdobby.a)

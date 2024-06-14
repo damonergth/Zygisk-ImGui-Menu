@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #include <jni.h>
 #include "zygisk.hpp"
-#include "hook.h"
+#include "hack.h"
 
 using zygisk::Api;
 using zygisk::AppSpecializeArgs;

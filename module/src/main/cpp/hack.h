@@ -1,5 +1,5 @@
-#ifndef ZygiskImGui_HOOK_H
-#define ZygiskImGui_HOOK_H
+#ifndef HACK_H
+#define HACK_H
 
 #include <jni.h>
 #include <android/log.h>
@@ -19,4 +19,4 @@ void *hack_thread(void *arg);
     ret (*orig##func)(__VA_ARGS__); \
     ret my##func(__VA_ARGS__)
 
-#endif // ZygiskImGui_HOOK_H
+#endif // HACK_H
