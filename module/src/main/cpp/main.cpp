@@ -49,9 +49,9 @@ public:
 
 private:
     JNIEnv *env_{};
-    JNIEnv *env;
-    bool enableDump;
-    char *dumpGameDataDir;
+    // JNIEnv *env;
+    // bool enableDump;
+    // char *dumpGameDataDir;
     /*
     preSpecialize(const char *dumpGame, const char *dumpDataDir) {
         if (strcmp(dumpGame = GamePackageName) == 0) {
