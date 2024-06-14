@@ -11,6 +11,8 @@ class MyModule : public zygisk::ModuleBase {
 public:
     void onLoad(Api *api, JNIEnv *env) override {
         env_ = env;
+        this->api = api;
+        this->env = env;
     }
 
     void preAppSpecialize(AppSpecializeArgs *args) override {
@@ -19,6 +21,11 @@ public:
             return;
         }
         enable_hack = isGame(env_, args->app_data_dir);
+        auto dumpGame = env->GetStringUTFChars(args->nice_name, nullptr);
+        auto dumpDataDir = env->GetStringUTFChars(args->app_data_dir, nullptr);
+        preSpecialize(dumpGame, dumpDataDir);
+        env->ReleaseStringUTFChars(nice_name, dumpGame);
+        env->ReleaseStringUTFChars(app_data_dir, dumpDataDir);
     }
 
     void postAppSpecialize(const AppSpecializeArgs *) override {
@@ -33,6 +40,17 @@ public:
 
 private:
     JNIEnv *env_{};
+    bool enableDump;
+    char *dumpGameDataDir;
+    
+    preSpecialize(const char dumpGame, const char dumpDataDir) {
+        if (strcmp(dumpGame = GamePackageName) == 0) {
+            enableDump = true
+            dumpGameDataDir = new char[strlen(dumpDataDir) +1];
+            strcpy(dumpGameDataDir, dumpDataDir);
+            
+        }
+    }
 };
 
 REGISTER_ZYGISK_MODULE(MyModule)
