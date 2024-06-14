@@ -29,8 +29,6 @@
 #include "Unity/Quaternion.h"
 #include "Rect.h"
 
-#define GamePackageName "com.kakaogames.gdts" // define the game package name here please
-
 int glHeight, glWidth;
 
 int isGame(JNIEnv *env, jstring appDataDir) {
