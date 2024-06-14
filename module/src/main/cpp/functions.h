@@ -60,6 +60,8 @@ void DrawMenu() {
         Begin(OBFUSCATE("EZCHEATS"));
         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown;
         if (BeginTabBar("Menu", tab_bar_flags)) {
+            SliderInt("slider int", &dmg, 0, 100);
+            SliderFloat("slider float", &walkspeed, 0.0f, 10.0f, "ratio = %.3f");
             if (BeginTabItem(OBFUSCATE("PLAYER"))) {
                 Checkbox(OBFUSCATE("One Hit"), &attackScale);
                 Checkbox(OBFUSCATE("Dumb Enemt"), &bot);
@@ -69,10 +71,7 @@ void DrawMenu() {
                 Checkbox(OBFUSCATE("Attach"), &attach);
                 EndTabItem();
             }
-            SliderInt("slider int", &dmg, 0, 100);
-            SliderFloat("slider float", &f1, 0.0f, 1.0f, "ratio = %.3f");
             EndTabBar();
-            
         }
         TextUnformatted(OBFUSCATE ("BY DAPZ"));
         Patches();
