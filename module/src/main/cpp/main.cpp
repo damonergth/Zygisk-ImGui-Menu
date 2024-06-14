@@ -1,5 +1,12 @@
 #include <cstring>
+#include <unistd.h>
+#include <cinttypes>
+#include <thread>
 #include <pthread.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <jni.h>
 #include "zygisk.hpp"
 #include "hook.h"
@@ -40,15 +47,15 @@ public:
 
 private:
     JNIEnv *env_{};
+    JNIEnv *env;
     bool enableDump;
     char *dumpGameDataDir;
     
-    preSpecialize(const char dumpGame, const char dumpDataDir) {
+    preSpecialize(const char *dumpGame, const char *dumpDataDir) {
         if (strcmp(dumpGame = GamePackageName) == 0) {
-            enableDump = true
+            enableDump = true;
             dumpGameDataDir = new char[strlen(dumpDataDir) +1];
             strcpy(dumpGameDataDir, dumpDataDir);
-            
         }
     }
 };
