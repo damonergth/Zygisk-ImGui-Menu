@@ -64,7 +64,7 @@ HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac) {
     return;
 }
 
-#include "functions.h"
+#include "menu.h"
 
 void SetupImgui() {
     IMGUI_CHECKVERSION();
