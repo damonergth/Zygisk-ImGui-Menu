@@ -28,7 +28,7 @@
 #include "hook.h"
 #include "Unity/Quaternion.h"
 #include "Rect.h"
-#define GamePackageName "com.kakaogames.gdts
+#define GamePackageName "com.kakaogames.gdts"
 
 int glHeight, glWidth;
 
