@@ -1,7 +1,3 @@
-//
-// Created by lbert on 2/13/2023.
-//
-
 #ifndef ZYGISKPG_AUTH_H
 #define ZYGISKPG_AUTH_H
 

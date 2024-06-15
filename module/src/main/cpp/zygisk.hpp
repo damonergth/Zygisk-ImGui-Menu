@@ -1,6 +1,3 @@
-// This is the public API for Zygisk modules.
-// DO NOT MODIFY ANY CODE IN THIS HEADER.
-
 #pragma once
 
 #include <jni.h>

@@ -1,77 +1,83 @@
-//
-// Created by lbert on 4/15/2023.
-//
-
-#ifndef ZYGISK_MENU_TEMPLATE_MENU_H
-#define ZYGISK_MENU_TEMPLATE_MENU_H
+#ifndef IMGUI_MENU_H
+#define IMGUI_MENU_H
 
 using namespace ImGui;
 
-void DrawMenu()
-{
-    static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+/*
+   FOR ARM64
+   200080D2C0035FD6 TRUE
+   000080D2C0035FD6 FALSE
+   00E0AFD2C0035FD6 HIGH VALUE
+   1F2003D5 NOP
+*/
+// public class MonsterCharacterController : IFieldObjectController, IComponent, IEventListener, ILateUpdatable
+bool isBattleOn; // 0x50e1b58 public Boolean OnEvent(Event e) { }
+// public class CharacterStatsBehaviour : FieldObjectStatsBehaviour
+bool manaRegen; // 0x777b90c public Single get_ManaRegenScale() { }
+int walkSpeed = 1; // 0x777f2a4 public Single get_WalkSpeed() { }
+int dashSpeed = 1; // 0x777736c public Single get_DashSpeed() { }
+// public class Weapon : Item, IWeapon, IItem, IIdHolder, IJSONObject, IEquipment, IDeepCloneable`1
+int getDamage = 0; // 0x65a226c public Single GetElementalAttackScale(ElementalType elementalType, Int32 level, Int32 limitBreaks, Int32 characterOriginId) { }
+// public struct BuffStats
+int speedv2 = 1;  // 0x56bceac public ObscuredFloat get_SpeedMult() { }
+
+void Pointers() {}
+
+void Patches() {
+    PATCH_SWITCH("0x50e1b58", "000080D2C0035FD6", isBattleOn);
+    PATCH_SWITCH("0x777b90c", "00E0AFD2C0035FD6", manaRegen);
+}
+
+int (*old_GetElementalAttackScale)(void *instance);
+int GetElementalAttackScale(void *instance) {
+    if (instance != NULL && getDamage) {
+        return (int) getDamage;
+    }
+    return old_GetElementalAttackScale(instance);
+}
+
+int (*old_charSpeed)(void *instance);
+int charSpeed(void *instance) {
+	if (instance != NULL && walkSpeed) {/*walkSpeed && dashSpeed*/
+		return (int) walkSpeed;
+		// return (int) dashSpeed;
+		// return (int) speedv2;
+	}
+	return old_charSpeed(instance);
+}
+/*
+float (*old_getWalkspeed)(void *instance);
+float getWalkspeed(void *instance) {
+    if (instance != NULL && walkspeed > 1) {
+        return (float) walkspeed;
+    }
+    return old_getWalkspeed(instance);
+}
+*/
+void Hooks() {
+    HOOK("0x65a226c", GetElementalAttackScale, old_GetElementalAttackScale);
+    HOOK("0x777f2a4", charSpeed, old_charSpeed);
+}
+
+void DrawMenu() {
+    static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); 
     {
-        Begin(OBFUSCATE("ZyCheats"));
+        Begin(OBFUSCATE("EZCHEATS"));
         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown;
         if (BeginTabBar("Menu", tab_bar_flags)) {
-            if (BeginTabItem(OBFUSCATE("Account"))) {
-                // here menu stuff, remove test btw
-                // ImGui::Checkbox(OBFUSCATE("This is a checkbox"), &test);
-                if (Button(OBFUSCATE("Add Currency"))) {
-                    // code for button action
-                    addCurrency = true;
-                }
-                TextUnformatted(OBFUSCATE("Adds 1000 gems"));
-                if (Button(OBFUSCATE("Add Skins"))) {
-                    // code for button action
-                    addSkins = true;
-                }
-                Checkbox(OBFUSCATE("Everything unlocked"), &everythingUnlocked);
-                Checkbox(OBFUSCATE("Free Items"), &freeItems);
-                Checkbox(OBFUSCATE("Show Items"), &showAllItems);
-                EndTabItem();
-            }
+            // if (BeginTabItem(OBFUSCATE("PLAYER"))) {}
+			SliderInt("dmg", &getDamage, 1, 100);
+			SameLine(); TextUnformatted(OBFUSCATE ("Damage Multiplier"));
+                        SliderInt("spd", &walkSpeed, 1, 10);
+			SameLine(); TextUnformatted(OBFUSCATE("Walkspeed"));
+			Checkbox(OBFUSCATE("Dumb Enemy"), &isBattleOn);
+			Checkbox(OBFUSCATE("No CD"), &manaRegen);
             EndTabBar();
         }
+        TextUnformatted(OBFUSCATE ("BY DAPZ"));
         Patches();
         End();
     }
 }
 
-void SetupImgui() {
-    IMGUI_CHECKVERSION();
-    CreateContext();
-    ImGuiIO &io = GetIO();
-    io.DisplaySize = ImVec2((float) glWidth, (float) glHeight);
-    ImGui_ImplOpenGL3_Init("#version 100");
-    StyleColorsDark();
-    GetStyle().ScaleAllSizes(7.0f);
-    io.Fonts->AddFontFromMemoryTTF(Roboto_Regular, 30, 30.0f);
-}
-
-
-EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surface);
-EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
-    eglQuerySurface(dpy, surface, EGL_WIDTH, &glWidth);
-    eglQuerySurface(dpy, surface, EGL_HEIGHT, &glHeight);
-
-    if (!setupimg)
-    {
-        SetupImgui();
-        setupimg = true;
-    }
-
-    ImGuiIO &io = GetIO();
-    ImGui_ImplOpenGL3_NewFrame();
-    NewFrame();
-
-    DrawMenu();
-
-    EndFrame();
-    Render();
-    glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    return old_eglSwapBuffers(dpy, surface);
-}
-
-#endif //ZYGISK_MENU_TEMPLATE_MENU_H
+#endif // IMGUI_MENU_H

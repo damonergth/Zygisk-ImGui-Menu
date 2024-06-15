@@ -1,4 +1,3 @@
-
 class Color {
 public:
     float r, b, g, a;
