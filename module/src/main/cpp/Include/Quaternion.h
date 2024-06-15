@@ -6,6 +6,7 @@
 
 #define SMALL_float 0.0000000001
 
+
 /**
  * Attempt to include a header file if the file exists.
  * If the file does not exist, create a dummy data structure for that type.

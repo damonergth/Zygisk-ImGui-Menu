@@ -1,8 +1,11 @@
-#ifndef MISC_H
-#define MISC_H
+//
+// Created by lbert on 2/9/2023.
+//
+#ifndef ZYGISKPG_MISC_H
+#define ZYGISKPG_MISC_H
 
-#include "Dobby/dobby.h"
-#include "Unity/Unity.h"
+#include "Includes/Dobby/dobby.h"
+#include "Include/Unity.h"
 #include "KittyMemory/KittyMemory.h"
 #include "KittyMemory/KittyScanner.h"
 #include "KittyMemory/MemoryPatch.h"
@@ -71,4 +74,4 @@ uintptr_t string2Offset(const char *c) {
 #define PATCH_SWITCH(offset, hex, boolean) patchOffset(string2Offset(OBFUSCATE(offset)), OBFUSCATE(hex), boolean)
 #define RESTORE(offset) patchOffset(string2Offset(OBFUSCATE(offset)), "", false)
 
-#endif // MISC_H
+#endif //ZYGISKPG_MISC_H

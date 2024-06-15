@@ -1,17 +1,15 @@
 #include <cstring>
 #include <cstdio>
+#include <unistd.h>
+#include <sys/system_properties.h>
+#include <dlfcn.h>
+#include <dlfcn.h>
 #include <cstdlib>
 #include <cinttypes>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <fstream>
-#include <limits>
-#include <iostream>
-#include <chrono>
-#include <unistd.h>
-#include <dlfcn.h>
-#include <sys/system_properties.h>
 #include <EGL/egl.h>
 #include <GLES2/gl2.h>
 #include "imgui.h"
@@ -22,18 +20,23 @@
 #include "KittyMemory/MemoryPatch.h"
 #include "KittyMemory/KittyScanner.h"
 #include "KittyMemory/KittyUtils.h"
-#include "Dobby/dobby.h"
-#include "Unity/Unity.h"
+#include "Includes/Dobby/dobby.h"
+#include "Include/Unity.h"
 #include "Misc.h"
-#include "hack.h"
-#include "Unity/Quaternion.h"
+#include "hook.h"
+#include "Include/Roboto-Regular.h"
+#include <iostream>
+#include <chrono>
+#include "Include/Quaternion.h"
 #include "Rect.h"
-#define GamePackageName "com.fattoy.swordash.android"
+#include <fstream>
+#include <limits>
+#define GamePackageName "com.kakaogames.gdts" // define the game package name here please
 
-int     glHeight, glWidth;
-bool    setupimg;
+int glHeight, glWidth;
 
-int isGame(JNIEnv *env, jstring appDataDir) {
+int isGame(JNIEnv *env, jstring appDataDir)
+{
     if (!appDataDir)
         return 0;
     const char *app_data_dir = env->GetStringUTFChars(appDataDir, nullptr);
@@ -58,49 +61,17 @@ int isGame(JNIEnv *env, jstring appDataDir) {
     }
 }
 
-HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac) {
+bool setupimg;
+
+HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac)
+{
     origInput(thiz, ex_ab, ex_ac);
     ImGui_ImplAndroid_HandleInputEvent((AInputEvent *)thiz);
     return;
 }
 
+#include "functions.h"
 #include "menu.h"
-
-void SetupImgui() {
-    IMGUI_CHECKVERSION();
-    CreateContext();
-    ImGuiIO &io = GetIO();
-    io.DisplaySize = ImVec2((float) glWidth, (float) glHeight);
-    ImGui_ImplOpenGL3_Init("#version 100");
-    StyleColorsDark();
-    ImFontConfig font_cfg;
-    font_cfg.SizePixels = 22.0f;
-    io.Fonts->AddFontDefault(&font_cfg);
-    GetStyle().ScaleAllSizes(7.0f);
-}
-
-EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surface);
-EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
-    eglQuerySurface(dpy, surface, EGL_WIDTH, &glWidth);
-    eglQuerySurface(dpy, surface, EGL_HEIGHT, &glHeight);
-
-    if (!setupimg) {
-        SetupImgui();
-        setupimg = true;
-    }
-
-    ImGuiIO &io = GetIO();
-    ImGui_ImplOpenGL3_NewFrame();
-    NewFrame();
-
-    DrawMenu();
-
-    EndFrame();
-    Render();
-    glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    return old_eglSwapBuffers(dpy, surface);
-}
 
 void *hack_thread(void *arg) {
     do {

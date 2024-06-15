@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string.h>
 
+
 struct Vector3
 {
     union

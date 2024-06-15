@@ -27,33 +27,30 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${C_FLAGS} ${CXX_FLAGS}")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${LINKER_FLAGS}")
 set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${LINKER_FLAGS}")
 
-include_directories(
-    KittyMemory
-    Include
-    Dobby
-    ImGui
-    ImGui/backends
-    Unity
-)
+include_directories(KittyMemory)
+include_directories(Include)
+include_directories(Includes)
+include_directories(ImGui)
+include_directories(ImGui/backends)
 
 add_library(${MODULE_NAME}
-    SHARED
-    ImGui/imgui.cpp
-    ImGui/imgui_draw.cpp
-    ImGui/imgui_demo.cpp
-    ImGui/imgui_widgets.cpp
-    ImGui/imgui_tables.cpp
-    ImGui/backends/imgui_impl_opengl3.cpp
-    ImGui/backends/imgui_impl_android.cpp
-    KittyMemory/KittyArm64.cpp
-    KittyMemory/KittyMemory.cpp
-    KittyMemory/KittyScanner.cpp
-    KittyMemory/KittyUtils.cpp
-    KittyMemory/MemoryBackup.cpp
-    KittyMemory/MemoryPatch.cpp
-    main.cpp
-    hack.cpp
-)
+        SHARED
+        ImGui/imgui.cpp
+        ImGui/imgui_draw.cpp
+        ImGui/imgui_demo.cpp
+        ImGui/imgui_widgets.cpp
+        ImGui/imgui_tables.cpp
+        ImGui/backends/imgui_impl_opengl3.cpp
+        ImGui/backends/imgui_impl_android.cpp
+        KittyMemory/KittyArm64.cpp
+        KittyMemory/KittyMemory.cpp
+        KittyMemory/KittyScanner.cpp
+        KittyMemory/KittyUtils.cpp
+        KittyMemory/MemoryBackup.cpp
+        KittyMemory/MemoryPatch.cpp
+        main.cpp
+        hook.cpp
+        )
 
 set(DOBBY_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libs/${CMAKE_ANDROID_ARCH_ABI}/libdobby.a)
 set(CURL_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libs/${CMAKE_ANDROID_ARCH_ABI}/libcurl.a)
