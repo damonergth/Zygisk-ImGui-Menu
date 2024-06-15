@@ -28,7 +28,7 @@
 #include "hack.h"
 #include "Unity/Quaternion.h"
 #include "Rect.h"
-#define GamePackageName "com.kakaogames.gdts"
+#define GamePackageName "com.unity.test"
 
 int     glHeight, glWidth;
 bool    setupimg;
