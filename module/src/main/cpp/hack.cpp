@@ -28,7 +28,7 @@
 #include "hack.h"
 #include "Unity/Quaternion.h"
 #include "Rect.h"
-#define GamePackageName "com.unity.test"
+#define GamePackageName "com.fattoy.swordash.android"
 
 int     glHeight, glWidth;
 bool    setupimg;
