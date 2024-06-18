@@ -3,13 +3,11 @@
 
 using namespace ImGui;
 
-/*
-   FOR ARM64
-   200080D2C0035FD6 TRUE
-   000080D2C0035FD6 FALSE
-   00E0AFD2C0035FD6 HIGH VALUE
-   1F2003D5 NOP
-*/
+// For arm64 only
+#define retTrue "200080D2C0035FD6"
+#define retFalse "000080D2C0035FD6"
+#define retHigh "00E0AFD2C0035FD6"
+#define NOP "1F2003D5"
 
 bool bot, mana, updHp, updFrame, attach;
 bool IState; // 0x77a0fe8 public static IState Create(Character character) { } CharacterDeadStateGenerator
