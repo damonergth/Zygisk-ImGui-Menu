@@ -28,7 +28,7 @@
 #include "hack.h"
 #include "Unity/Quaternion.h"
 #include "Rect.h"
-#define GamePackageName "com.fattoy.swordash.android"
+#define GamePackageName "com.gear2.growslayer"
 
 int     glHeight, glWidth;
 bool    setupimg;
