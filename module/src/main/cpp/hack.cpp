@@ -28,7 +28,7 @@
 #include "hack.h"
 #include "Unity/Quaternion.h"
 #include "Rect.h"
-#define GamePackageName "com.gear2.growslayer"
+#define GamePackageName "com.peaklegend.gpthgame"
 
 int     glHeight, glWidth;
 bool    setupimg;
